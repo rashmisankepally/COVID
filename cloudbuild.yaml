@@ -1,0 +1,13 @@
+
+steps:
+- name: gcr.io/cloud-builders/git
+  args: ['clone', 'https://github.com/polleyg/gcp-tweets-streaming-pipeline.git']
+
+- name: gcr.io/cloud-builders/gcloud
+  args: ['app', 'deploy', '--version=tweets']
+  dir: 'twitter_to_pubsub'
+
+- name: gcr.io/cloud-builders/gradle
+  args: ['build', 'run']
+
+timeout: 1800s
