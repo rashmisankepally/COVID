@@ -1,7 +1,7 @@
 
 steps:
 - name: gcr.io/cloud-builders/git
-  args: ['clone', 'https://github.com/polleyg/gcp-tweets-streaming-pipeline.git']
+  args: ['clone', 'https://github.com/rashmisankepally/COVID.git']
 
 - name: gcr.io/cloud-builders/gcloud
   args: ['app', 'deploy', '--version=tweets']
