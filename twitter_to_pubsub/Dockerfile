@@ -6,7 +6,7 @@ RUN pip install --upgrade google-api-python-client
 RUN pip install --upgrade oauth2client
 RUN pip install python-dateutil
 
-ADD twitter-to-pubsub.py /twitter-to-pubsub.py
+ADD twitter_to_pubsub.py /twitter_to_pubsub.py
 ADD utils.py /utils.py
 
 CMD python twitter-to-pubsub.py
