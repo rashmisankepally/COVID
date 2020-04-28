@@ -12,7 +12,7 @@ def publish(client, pubsub_topic, data_lines):
     """Publish to the given pubsub topic."""
     messages = []
     for line in data_lines:
-        pub = line.encode("utf-8")
+        pub = line
         messages.append({'data': pub})
     body = {'messages': messages}
     resp = client.projects().topics().publish(
