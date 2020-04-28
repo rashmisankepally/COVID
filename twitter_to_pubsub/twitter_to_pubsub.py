@@ -27,7 +27,7 @@ class StdOutListener(StreamListener):
     twstring = ''
     tweets = []
     batch_size = 50
-    total_tweets = 10000000
+    total_tweets = 1000000
     client = utils.create_pubsub_client(utils.get_credentials())
 
     def write_to_pubsub(self, tw):
