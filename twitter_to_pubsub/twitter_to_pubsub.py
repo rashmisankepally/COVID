@@ -12,7 +12,7 @@ def publish(client, pubsub_topic, data_lines):
     """Publish to the given pubsub topic."""
     messages = []
     for line in data_lines:
-        pub = base64.urlsafe_b64encode(line)
+        pub = line.encode("utf-8")
         messages.append({'data': pub})
     body = {'messages': messages}
     resp = client.projects().topics().publish(
@@ -55,5 +55,5 @@ if __name__ == '__main__':
     auth = OAuthHandler('MuDx4Cuoq2W5pr463fi1vivf1', 'mU5Vlmpu63vNPHYfm5AZOe7FlGB8RHEuwsxHUmtOb2I71h1O8J')
     auth.set_access_token('165781656-CRCOOZ6UWZD0rYNNwRKcTZKo5ztTd0a7MEeReGzg', 'aklRMf4da3A0OIYZjpPuwUBZzzQewY3yp5GKylx3mMarD')
     stream = Stream(auth, listener)
-    stream.filter(languages=['en'], track=['coronavirus', 'COVID', 'COVID19', 'COVID-19', 'COVID_19'])
+    stream.filter(track=['coronavirus', 'COVID', 'COVID19', 'COVID-19', 'COVID_19'], is_async=True)
 
