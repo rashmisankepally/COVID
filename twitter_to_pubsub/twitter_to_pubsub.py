@@ -65,7 +65,7 @@ if __name__ == '__main__':
     listener = StdOutListener()
     auth = OAuthHandler('MuDx4Cuoq2W5pr463fi1vivf1', 'mU5Vlmpu63vNPHYfm5AZOe7FlGB8RHEuwsxHUmtOb2I71h1O8J')
     auth.set_access_token('165781656-CRCOOZ6UWZD0rYNNwRKcTZKo5ztTd0a7MEeReGzg', 'aklRMf4da3A0OIYZjpPuwUBZzzQewY3yp5GKylx3mMarD')
-    api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=False)
+    #api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=False)
     stream = Stream(auth, listener)
     stream.filter(track=['coronavirus', 'COVID', 'COVID19', 'COVID-19', 'COVID_19'], is_async=True)
 
