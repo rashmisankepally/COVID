@@ -45,7 +45,8 @@ def reformat_tweet(tweet):
         "coordinates_longitude": x["coordinates"]["coordinates"][0] if x["coordinates"] else 0,
         "place": x["place"]["country_code"] if x["place"] else None,
         "user_id": x["user"]["id"],
-        "created_at": time.mktime(time.strptime(x["created_at"], "%a %b %d %H:%M:%S +0000 %Y"))
+        "created_at": x["created_at"]
+        #"created_at": time.mktime(time.strptime(x["created_at"], "%a %b %d %H:%M:%S +0000 %Y"))
     }
 
     if x["entities"]["hashtags"]:
