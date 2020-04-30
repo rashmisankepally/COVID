@@ -24,6 +24,7 @@ def write_to_pubsub(data):
                 "text": data["text"],
                 "user_id": data["user_id"],
                 "id": data["id"],
+                #"posted_at":datetime.strftime(data[created_at], '')
                 "posted_at": datetime.datetime.fromtimestamp(data["created_at"]).strftime('%Y-%m-%d %H:%M:%S')
             }).encode("utf-8"), tweet_id=str(data["id"]).encode("utf-8"))
 
@@ -45,7 +46,7 @@ def reformat_tweet(tweet):
         "coordinates_longitude": x["coordinates"]["coordinates"][0] if x["coordinates"] else 0,
         "place": x["place"]["country_code"] if x["place"] else None,
         "user_id": x["user"]["id"],
-        "created_at": x["created_at"]
+        "created_at": time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(x["created_at"], '%a %b %d %H:%M:%S +0000 %Y'))
         #"created_at": time.mktime(time.strptime(x["created_at"], "%a %b %d %H:%M:%S +0000 %Y"))
     }
 
