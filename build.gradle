@@ -21,7 +21,7 @@ run {
             "--maxNumWorkers=2",
             "--numWorkers=1",
             "--zone=us-central1-a",
-            "--stagingLocation=gs://coivd19tweets/jars",
+            "--stagingLocation=gs://covid19tweets/jars",
             "--tempLocation=gs://covid19tweets/tmp"
     ]
 }
