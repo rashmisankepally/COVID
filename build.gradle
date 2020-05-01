@@ -21,8 +21,8 @@ run {
             "--maxNumWorkers=2",
             "--numWorkers=1",
             "--zone=us-central1-a",
-            "--stagingLocation=gs://bigdata-273220.appspot.com",
-            "--tempLocation=gs://bigdata-273220.appspot.com"
+            "--stagingLocation=gs://covid19tweets",
+            "--tempLocation=gs://covid19tweets"
     ]
 }
 
