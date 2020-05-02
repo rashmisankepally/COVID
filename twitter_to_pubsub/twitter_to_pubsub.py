@@ -11,24 +11,34 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
 from google.cloud import pubsub_v1
+from countminsketch import CountMinSketch
 
 # Configure the connection
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path('bigdata-273220', 'got_COVID_tweets')
+sketch = CountMinSketch(1000, 10)
 
 # Function to write data to
 def write_to_pubsub(data):
     try:
         if data["lang"] == "en":
+            for hashtag in data["hashtags"]:
+                publisher.publish(topic_path, data=json.dumps({
+                    "hashtag": hashtag
+                    "frequency": estimate(hashtag)
+                    "posted_at": datetime.strptime(data["created_at"], '%a %b %d %H:%M:%S %z %Y').replace(tzinfo=timezone.utc).astimezone(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d %H:%M:%S')
+                    }).encode("utf-8"), tweet_id=str(data["id"]).encode("utf-8"))
 
+            """
             # publish to the topic, don't forget to encode everything at utf8!
             publisher.publish(topic_path, data=json.dumps({
                 "text": data["text"],
                 "user_id": data["user_id"],
                 "id": data["id"],
+                "hashtags": data["hashtags"]
                 "posted_at": datetime.strptime(data["created_at"], '%a %b %d %H:%M:%S %z %Y').replace(tzinfo=timezone.utc).astimezone(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d %H:%M:%S')
             }).encode("utf-8"), tweet_id=str(data["id"]).encode("utf-8"))
-
+            """
     except Exception as e:
         print(e)
         raise
@@ -53,8 +63,9 @@ def reformat_tweet(tweet):
     }
 
     if x["entities"]["hashtags"]:
-        processed_doc["hashtags"] = [{"text": y["text"], "startindex": y["indices"][0]} for y in
-                                     x["entities"]["hashtags"]]
+        processed_doc["hashtags"] = [y["text"] for y in x["entities"]["hashtags"]]
+        for y in x["entities"]["hashtags"]:
+            sketch.increment(y["text"])
     else:
         processed_doc["hashtags"] = []
 
@@ -82,11 +93,15 @@ class StdOutListener(StreamListener):
     twstring = ''
     tweets = []
     batch_size = 50
-    total_tweets = 1000000
+    total_tweets = 100000
     client = utils.create_pubsub_client(utils.get_credentials())
 
     def on_status(self, data):
         write_to_pubsub(reformat_tweet(data._json))
+        self.count += 1
+        # if we've grabbed more than total_tweets tweets, exit the script.
+        if self.count > self.total_tweets:
+            return False
         return True
     '''
     def on_data(self, data):
