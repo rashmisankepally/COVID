@@ -26,7 +26,7 @@ def write_to_pubsub(data):
                 publisher.publish(topic_path, data=json.dumps({
                     "hashtag": hashtag
                     #is it happening?
-                    "frequency": sketch.estimate(hashtag)
+                    #"frequency": sketch.estimate(hashtag)
                     "posted_at": datetime.strptime(data["created_at"], '%a %b %d %H:%M:%S %z %Y').replace(tzinfo=timezone.utc).astimezone(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d %H:%M:%S')
                     }).encode("utf-8"), tweet_id=str(data["id"]).encode("utf-8"))
 
