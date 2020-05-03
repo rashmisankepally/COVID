@@ -18,7 +18,7 @@ import sys
 file_dir = os.path.dirname(__file__)
 sys.path.append(file_dir)
 
-from countminsketch import CountMinSketch
+from .countminsketch import CountMinSketch
 
 # Configure the connection
 publisher = pubsub_v1.PublisherClient()
