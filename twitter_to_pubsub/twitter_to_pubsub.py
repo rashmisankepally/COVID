@@ -19,7 +19,7 @@ from google.cloud import pubsub_v1
 #parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
 #sys.path.append(parent_dir_path)
 
-from .countminsketch import CountMinSketch
+from twitter_to_pubsub.countminsketch import CountMinSketch
 
 # Configure the connection
 publisher = pubsub_v1.PublisherClient()
