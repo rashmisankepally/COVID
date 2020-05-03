@@ -12,14 +12,14 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 from google.cloud import pubsub_v1
 
-import os
-import sys
+#import os
+#import sys
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
-sys.path.append(parent_dir_path)
+#dir_path = os.path.dirname(os.path.realpath(__file__))
+#parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
+#sys.path.append(parent_dir_path)
 
-from countminsketch import CountMinSketch
+from .countminsketch import CountMinSketch
 
 # Configure the connection
 publisher = pubsub_v1.PublisherClient()
