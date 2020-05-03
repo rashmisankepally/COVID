@@ -48,7 +48,7 @@ public class TweetPipeline {
     private static TableSchema getTableSchema() {
         List<TableFieldSchema> fields = new ArrayList<>();
         fields.add(new TableFieldSchema().setName("timestamp").setType("INTEGER"));
-        fields.add(new TableFieldSchema().setName("payload").setType("STRING"));
+        fields.add(new TableFieldSchema().setName("hashtag").setType("STRING"));
         return new TableSchema().setFields(fields);
     }
 
