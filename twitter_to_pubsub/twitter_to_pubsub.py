@@ -11,6 +11,13 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
 from google.cloud import pubsub_v1
+
+import os
+import sys
+
+file_dir = os.path.dirname(__file__)
+sys.path.append(file_dir)
+
 from countminsketch import CountMinSketch
 
 # Configure the connection
