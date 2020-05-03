@@ -15,8 +15,9 @@ from google.cloud import pubsub_v1
 import os
 import sys
 
-file_dir = os.path.dirname(__file__)
-sys.path.append(file_dir)
+dir_path = os.path.dirname(os.path.realpath(__file__))
+parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
+sys.path.append(parent_dir_path)
 
 from countminsketch import CountMinSketch
 
