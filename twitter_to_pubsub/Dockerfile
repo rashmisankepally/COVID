@@ -10,6 +10,7 @@ RUN pip install numpy
 RUN pip install mmh3
 
 ADD twitter_to_pubsub.py /twitter_to_pubsub.py
+ADD countminsketch.py  /countminsketch.py
 ADD utils.py /utils.py
 
 CMD python twitter_to_pubsub.py
