@@ -58,7 +58,7 @@ public class TweetPipeline {
             String payload = new String(c.element().getPayload(), StandardCharsets.UTF_8);
             c.output(new TableRow()
                     .set("timestamp", System.currentTimeMillis())
-                    .set("payload", payload)
+                    .set("hashtag", payload)
             );
         }
     }
