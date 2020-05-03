@@ -19,12 +19,12 @@ from google.cloud import pubsub_v1
 #parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
 #sys.path.append(parent_dir_path)
 
-from twitter_to_pubsub.countminsketch import CountMinSketch
+import countminsketch
 
 # Configure the connection
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path('bigdata-273220', 'got_COVID_tweets')
-sketch = CountMinSketch(1000, 10)
+sketch = countminsketch.CountMinSketch(1000, 10)
 
 # Function to write data to
 def write_to_pubsub(data):
