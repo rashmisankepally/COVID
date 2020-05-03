@@ -13,7 +13,7 @@ class CountMinSketch(object):
         self.width = width
         self.depth = depth
         self.table = np.zeros([depth, width])  # Create empty table
-        self.seed =  np.random.randint(w, size = d)
+        self.seed =  np.random.randint(width, size = depth)
 
     def increment(self, key):
         ''' Method to add a key to the CMS
